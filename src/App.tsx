@@ -12,7 +12,7 @@ function App() {
   }, [gameOn]);
 
   return (
-    <main className="border border-red-600 border-solid w-3/4 h-5/6 md:w-[550px] md:h-[550px] mx-auto flex justify-center items-center">
+    <main className="border border-red-600 border-solid w-3/4 h-5/6 sm:w-[550px] sm:h-[550px] mx-auto flex justify-center items-center">
       {gameOn ? <QuizPage /> : <StartPage gameStart={gameStart} />}
     </main>
   );
