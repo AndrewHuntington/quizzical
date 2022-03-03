@@ -1,9 +1,19 @@
-import './App.css';
+import { useState, useCallback } from 'react';
+import StartPage from './components/StartPage';
+import QuizPage from './components/QuizPage';
 
 function App() {
+  const [gameOn, setGameOn] = useState(false);
+
+  const gameStart = useCallback(() => {
+    if (!gameOn) {
+      setGameOn(true);
+    }
+  }, [gameOn]);
+
   return (
-    <main>
-      <h1 className="text-3xl font-bold underline">Hello world!</h1>
+    <main className="border border-red-600 border-solid w-3/4 h-5/6 md:w-[550px] md:h-[550px] mx-auto flex justify-center items-center">
+      {gameOn ? <QuizPage /> : <StartPage gameStart={gameStart} />}
     </main>
   );
 }
