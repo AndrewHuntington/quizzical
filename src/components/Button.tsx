@@ -9,7 +9,7 @@ export default function Button({
 }) {
   return (
     <button
-      className="bg-[#4d5b9e] text-white rounded-2xl w-full h-full"
+      className="bg-[#4d5b9e] text-white font-['Inter'] rounded-2xl w-full h-full"
       type="button"
       onClick={onClick}
     >

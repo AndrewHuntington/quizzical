@@ -13,3 +13,13 @@ body {
   height: 100%;
   padding-top: 3rem;
 }
+
+@layer components {
+  .answer-selected {
+    @apply bg-[#D6DBF5] border-transparent;
+  }
+
+  .answer-unselected {
+    @apply bg-transparent border border-solid border-[#4D5B9E];
+  }
+}
