@@ -2,11 +2,11 @@
 import React from 'react';
 
 export default function Answer({
-  children,
+  answer,
   isCorrect,
   isSelected,
 }: {
-  children: React.ReactNode;
+  answer: string;
   isCorrect: boolean;
   isSelected: boolean;
 }) {
@@ -15,8 +15,7 @@ export default function Answer({
       className={`flex items-center justify-center text-center w-full rounded-lg mb-2 hover:answer-selected ${
         isSelected ? 'answer-selected' : 'answer-unselected'
       }`}
-    >
-      {children}
-    </div>
+      dangerouslySetInnerHTML={{ __html: answer }}
+    />
   );
 }

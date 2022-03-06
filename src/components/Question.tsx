@@ -30,14 +30,17 @@ export default function Question({
       key={nanoid()}
       isCorrect={answer.isCorrect}
       isSelected={answer.isSelected}
-    >
-      {answer.answer}
-    </Answer>
+      answer={answer.answer}
+    />
   ));
+
   return (
     <div className="flex justify-center mt-4">
       <div className="border-b w-4/5">
-        <h2 className="font-bold mb-3">{question}</h2>
+        <div
+          className="font-bold mb-3"
+          dangerouslySetInnerHTML={{ __html: question }}
+        />
         <div className="flex flex-col sm:flex-row mb-4">{answerChoices}</div>
       </div>
     </div>
