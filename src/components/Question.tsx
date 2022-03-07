@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useCallback } from 'react';
 import { nanoid } from 'nanoid';
 import Answer from './Answer';
 
@@ -13,24 +13,43 @@ export default function Question({
 }) {
   const answers = [
     {
+      id: nanoid(),
       answer: correct_answer,
       isCorrect: true,
       isSelected: false,
     },
     ...incorrect_answers.map((answer) => ({
+      id: nanoid(),
       answer,
       isCorrect: false,
       isSelected: false,
     })),
   ];
 
+  const [questionAnswers, setQuestionAnswers] = useState(answers);
+
+  const handleAnswerClick = useCallback(
+    (id: string) => {
+      const updatedAnswers = questionAnswers.map((answer) => {
+        if (answer.id === id) {
+          return { ...answer, isSelected: true };
+        }
+        return { ...answer, isSelected: false };
+      });
+      setQuestionAnswers(updatedAnswers);
+    },
+    [questionAnswers]
+  );
+
   // TODO: Answer 0 is always correct, so it should be randomized
-  const answerChoices = answers.map((answer) => (
+  const answerChoices = questionAnswers.map((answer) => (
     <Answer
-      key={nanoid()}
+      key={answer.id}
+      id={answer.id}
       isCorrect={answer.isCorrect}
       isSelected={answer.isSelected}
       answer={answer.answer}
+      handleAnswerClick={handleAnswerClick}
     />
   ));
 

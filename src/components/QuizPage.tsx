@@ -1,16 +1,8 @@
 import { useCallback, useEffect, useState } from 'react';
 import { nanoid } from 'nanoid';
+import TriviaData from '../interfaces/TriviaData';
 import Question from './Question';
 import Button from './Button';
-
-interface TriviaData {
-  category: string;
-  correct_answer: string;
-  difficulty: string;
-  incorrect_answers: string[];
-  question: string;
-  type: string;
-}
 
 export default function QuizPage() {
   const [triviaObjects, setTriviaObjects] = useState<TriviaData[]>([]);
