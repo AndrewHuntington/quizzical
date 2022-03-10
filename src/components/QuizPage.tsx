@@ -15,19 +15,31 @@ export default function QuizPage() {
       .catch((err) => console.warn(err));
   }, []);
 
-  // TODO: Figure out how to convert HTML code to comprehendible text
-  const triviaList = triviaObjects.map((trivia) => (
-    <Question
-      key={nanoid()}
-      question={trivia.question}
-      correct_answer={trivia.correct_answer}
-      incorrect_answers={trivia.incorrect_answers}
-    />
-  ));
+  const triviaList = triviaObjects.map((trivia) => {
+    const answers = [
+      {
+        id: nanoid(),
+        answer: trivia.correct_answer,
+        isCorrect: true,
+        isSelected: false,
+      },
+      ...trivia.incorrect_answers.map((answer) => ({
+        id: nanoid(),
+        answer,
+        isCorrect: false,
+        isSelected: false,
+      })),
+    ];
 
+    return (
+      <Question key={nanoid()} question={trivia.question} answers={answers} />
+    );
+  });
+
+  // TODO: Finish this function
   const checkAnswers = useCallback(() => {
-    console.log('Checking answers');
-  }, []);
+    console.log(triviaList[0].props.answers);
+  }, [triviaList]);
 
   return (
     <div className="flex justify-center items-center">

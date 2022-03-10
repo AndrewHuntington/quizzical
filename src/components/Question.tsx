@@ -1,31 +1,14 @@
 import React, { useState, useCallback } from 'react';
-import { nanoid } from 'nanoid';
+import TriviaAnswers from '../interfaces/TriviaAnswers';
 import Answer from './Answer';
 
 export default function Question({
   question,
-  correct_answer,
-  incorrect_answers,
+  answers,
 }: {
   question: string;
-  correct_answer: string;
-  incorrect_answers: string[];
+  answers: TriviaAnswers[];
 }) {
-  const answers = [
-    {
-      id: nanoid(),
-      answer: correct_answer,
-      isCorrect: true,
-      isSelected: false,
-    },
-    ...incorrect_answers.map((answer) => ({
-      id: nanoid(),
-      answer,
-      isCorrect: false,
-      isSelected: false,
-    })),
-  ];
-
   const [questionAnswers, setQuestionAnswers] = useState(answers);
 
   const handleAnswerClick = useCallback(
