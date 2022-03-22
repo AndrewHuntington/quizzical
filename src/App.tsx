@@ -15,7 +15,7 @@ function App() {
     <main
       className={`w-3/4 ${
         gameOn ? '' : 'h-5/6'
-      } sm:w-[550px] sm:h-[550px] mx-auto flex justify-center items-center`}
+      } sm:w-[800px] mx-auto flex justify-center items-center`}
     >
       {gameOn ? <QuizPage /> : <StartPage gameStart={gameStart} />}
     </main>

@@ -18,7 +18,7 @@ export default function Answer({
 }) {
   return (
     <div
-      className={`flex items-center justify-center text-center w-full rounded-lg mb-2 hover:cursor-pointer hover:answer-selected ${
+      className={`flex items-center justify-center text-center max-w-full rounded-lg mb-2 mr-5 hover:cursor-pointer hover:answer-selected px-5 ${
         isSelected ? 'answer-selected' : 'answer-unselected'
       }`}
       dangerouslySetInnerHTML={{ __html: answer }}

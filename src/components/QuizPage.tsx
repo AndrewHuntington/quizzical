@@ -51,7 +51,7 @@ export default function QuizPage() {
   return (
     <div className="flex justify-center items-center">
       <div className="w-4/5">
-        <div className="flex flex-col sm:flex-row">{triviaList}</div>
+        <div className="flex flex-col">{triviaList}</div>
         <div className="flex justify-center mb-6">
           <div className="w-28 h-9 mt-4 font-semibold text-xs">
             <Button onClick={checkAnswers} insideText="Check answers" />
