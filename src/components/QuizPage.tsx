@@ -6,6 +6,7 @@ import Button from './Button';
 
 export default function QuizPage() {
   const [triviaObjects, setTriviaObjects] = useState<TriviaData[]>([]);
+  const [isGameOver, setIsGameOver] = useState(false);
 
   // TODO: Do something better with the error
   useEffect(() => {
@@ -39,7 +40,13 @@ export default function QuizPage() {
   // TODO: Finish this function
   const checkAnswers = useCallback(() => {
     console.log(triviaList[0].props.answers);
-  }, [triviaList]);
+
+    // ! Whenever isGameOver is changed, this causes a re-render
+    // ! This is a problem because the Answer component loses its state, so I cannot check if it is selected and then change it to the appropriate color
+    if (!isGameOver) {
+      setIsGameOver((prev) => !prev);
+    }
+  }, [isGameOver, triviaList]);
 
   return (
     <div className="flex justify-center items-center">
