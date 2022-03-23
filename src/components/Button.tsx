@@ -5,7 +5,7 @@ export default function Button({
   onClick,
 }: {
   insideText: string;
-  onClick: () => void;
+  onClick: (event: React.MouseEvent<HTMLButtonElement>) => void;
 }) {
   return (
     <button

@@ -1,4 +1,5 @@
-import { useCallback, useEffect, useState } from 'react';
+/* eslint-disable no-param-reassign */
+import { useCallback, useEffect, useState, useRef } from 'react';
 import { nanoid } from 'nanoid';
 import TriviaData from '../interfaces/TriviaData';
 import Question from './Question';
@@ -6,7 +7,7 @@ import Button from './Button';
 
 export default function QuizPage() {
   const [triviaObjects, setTriviaObjects] = useState<TriviaData[]>([]);
-  const [isGameOver, setIsGameOver] = useState(false);
+  const gameOver = useRef(false);
 
   // TODO: Do something better with the error
   useEffect(() => {
@@ -38,15 +39,21 @@ export default function QuizPage() {
   });
 
   // TODO: Finish this function
-  const checkAnswers = useCallback(() => {
-    console.log(triviaList[0].props.answers);
+  const checkAnswers = useCallback(
+    (event) => {
+      console.log(triviaList[0].props.answers);
 
-    // ! Whenever isGameOver is changed, this causes a re-render
-    // ! This is a problem because the Answer component loses its state, so I cannot check if it is selected and then change it to the appropriate color
-    if (!isGameOver) {
-      setIsGameOver((prev) => !prev);
-    }
-  }, [isGameOver, triviaList]);
+      // ! Whenever isGameOver is changed, this causes a re-render
+      // ! This is a problem because the Answer component loses its state, so I cannot check if it is selected and then change it to the appropriate color
+      // ? Possible solution: refs to keep track of the answers or game over state
+
+      if (!gameOver.current) {
+        event.target.innerText = 'Play again';
+        gameOver.current = true;
+      }
+    },
+    [gameOver, triviaList]
+  );
 
   return (
     <div className="flex justify-center items-center">
